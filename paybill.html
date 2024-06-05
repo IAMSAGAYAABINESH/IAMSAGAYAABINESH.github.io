@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pay Bill</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div id="header"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('header').innerHTML = html;
+      });
+  </script>
+  <section id="payment" class="pay-bill">
+    <h2>Payment Bill</h2>
+    <div>
+      <p>Bill Amount: <span id="billAmount">$100</span></p> 
+      <p>Total Payable Amount: <span id="payableAmount">$102</span></p>
+      <p>PG Charge: <span id="pgCharge">$2</span></p>
+      <p>Mode of Payment:
+        <select id="paymentMode">
+          <option value="debit">Debit</option>
+          <option value="credit">Credit</option>
+        </select>
+      </p>
+    </div>
+    <button id="payNow">Pay Now</button>
+    <button id="backToHome" onclick="window.location.href='./home.html'">Back to Home</button>
+  </section>
+
+  <section id="credit-card-details" class="credit-card-details hidden">
+    <h2>Enter Card Details</h2>
+    <form id="creditCardForm">
+
+      <label for="cardNumber">Card No:</label>
+      <input type="number" id="cardNumber" name="cardNumber" minlength="16" required>
+
+      <label for="cardHolderName">Card Holder Name:</label>
+      <input type="text" id="cardHolderName" name="cardHolderName" minlength="10" required>
+
+      <label for="expiryDate">Expiry Date (MM/YY):</label>
+      <input type="text" id="expiryDate" name="expiryDate" required>
+
+      <label for="cvv">CVV:</label>
+      <input type="number" id="cvv" name="cvv" minlength="3" required>
+
+      <button type="submit">Make Payment</button>
+    </form>
+  </section>
+
+  <section id="payment-success" class="payment-success hidden">
+    <h2>Payment Successful</h2>
+    <p>Your payment has been processed successfully.</p>
+    <p>Transaction ID: <span id="transactionID"></span></p>
+    <a href="#" id="downloadLink">Download Transaction Receipt</a>
+  </section>
+
+  <script>
+    const payNowButton = document.getElementById('payNow');
+    const creditCardDetailsSection = document.getElementById('credit-card-details');
+    const paymentSuccessSection = document.getElementById('payment-success');
+    const creditCardForm = document.getElementById('creditCardForm');
+    const transactionIDSpan = document.getElementById('transactionID');
+
+    payNowButton.addEventListener('click', () => {
+      creditCardDetailsSection.classList.remove('hidden');
+    });
+
+    creditCardForm.addEventListener('submit', (event) => {
+      event.preventDefault(); 
+      setTimeout(() => {
+        creditCardDetailsSection.classList.add('hidden');
+        paymentSuccessSection.classList.remove('hidden');
+
+        const transactionID = Math.floor(Math.random() * 1000000000);
+        transactionIDSpan.textContent = transactionID;
+      }, 1000); 
+    });
+  </script>
+</body>
+</html>

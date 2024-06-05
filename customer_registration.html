@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customer Registration</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Login</a></li>
+        <li><a href="customer_registration.html">Customer Registration</a></li>
+      </ul>
+    </nav>
+</header>
+  <div class="container">
+    <h2><center>Customer Registration</center></h2>
+    <form id="registrationForm">
+      <label for="consumerId">Consumer ID:</label>
+      <input type="text" id="consumerId" name="consumerId" placeholder="13 digit number" required>
+
+      <label for="billNumber">Bill Number:</label>
+      <input type="text" id="billNumber" name="billNumber" placeholder="Last 5 digits" required>
+
+      <label for="title">Title:</label>
+      <select id="title" name="title" required>
+        <option value="Mr.">Mr.</option>
+        <option value="Ms.">Ms.</option>
+        <option value="Mrs.">Mrs.</option>
+        <option value="Dr.">Dr.</option>
+        <option value="NA">Not to Prefer</option>
+      </select>
+
+      <label for="customerName">Customer Name:</label>
+      <input type="text" id="customerName" name="customerName" placeholder="Max 50 characters" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="example@email.com" required>
+
+      <label for="mobileNumber">Mobile Number:</label>
+      <select id="countryCode" name="countryCode" required>
+        <option value="+1">+1</option>
+        <option value="+91">+91</option>
+        </select>
+      <input type="text" id="mobileNumber" name="mobileNumber" placeholder="10 digit number" required>
+
+      <label for="userId">User ID:</label>
+      <input type="text" id="userId" name="userId" placeholder="Min 5, Max 20 characters" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+      <button type="submit">Register</button>
+      <button type="reset">Reset</button>
+    </form>
+    <div id="registrationSuccess" class="success" style="display: none;">
+      <h3>Consumer Registration successful.</h3>
+      <p>Your Customer ID: <span id="generatedCustomerId"></span></p>
+      <p>Your Name: <span id="displayedCustomerName"></span></p>
+      <p>Your Email: <span id="displayedEmail"></span></p>
+    </div>
+  </div>
+
+  <script>
+
+    const registrationForm = document.getElementById('registrationForm');
+    const registrationSuccess = document.getElementById('registrationSuccess');
+    const generatedCustomerId = document.getElementById('generatedCustomerId');
+    const displayedCustomerName = document.getElementById('displayedCustomerName');
+    const displayedEmail = document.getElementById('displayedEmail');
+
+    registrationForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const consumerId = document.getElementById('consumerId').value;
+      const billNumber = document.getElementById('billNumber').value;
+      const customerName = document.getElementById('customerName').value;
+      const email = document.getElementById('email').value;
+      const mobileNumber = document.getElementById('mobileNumber').value;
+      const userId = document.getElementById('userId').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (consumerId.length !== 13) {
+        alert("Consumer ID must be 13 digits.");
+        return;
+      }
+
+      if (billNumber.length !== 5) {
+        alert("Bill Number must be the last 5 digits of your bill.");
+      }
+
+      if (customerName.length > 50) {
+        alert("Customer Name cannot exceed 50 characters.");
+      }
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+      }
+      registrationSuccess.style.display = 'block';
+      registrationSuccess.style.backgroundColor = '#d8ffd9';
+      registrationSuccess.style.borderRadius = '5px';
+      generatedCustomerId.textContent = consumerId;
+      generatedCustomerId.style.color = 'black';
+      generatedCustomerId.style.fontWeight = 'bold';
+      displayedCustomerName.textContent = customerName;
+      displayedCustomerName.style.color = 'black';
+      displayedCustomerName.style.fontWeight = 'bold';
+      displayedEmail.textContent = email;
+      displayedEmail.style.color = 'black';
+      displayedEmail.style.fontWeight = 'bold';
+    });
+    registrationForm.addEventListener('reset', function(event) {
+      registrationSuccess.style.display = 'none';
+      registrationForm.reset();
+    });
+  </script>
+</body>
+</html>

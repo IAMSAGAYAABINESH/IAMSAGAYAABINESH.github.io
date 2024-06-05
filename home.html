@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div id="header"></div>
+  <script>
+    fetch('header.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('header').innerHTML = html;
+      });
+  </script>
+  <h1><center>Welcome Home</center></h1>
+  <center><img src="./bg.jpeg" alt="Home Page Image" class="home-image"></center>
+</body>
+</html>

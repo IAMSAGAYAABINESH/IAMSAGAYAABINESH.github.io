@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <style>
+        header {
+          background-color: #f0f0f0;
+          padding: 20px;
+          border-bottom: 1px solid #ccc;
+        }
+    
+        nav {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+    
+        nav ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+        }
+    
+        nav li {
+          margin-right: 20px;
+        }
+    
+        nav a {
+          text-decoration: none;
+          color: #333;
+          padding: 10px 15px;
+          border-bottom: 2px solid transparent;
+          transition: border-bottom-color 0.3s;
+        }
+    
+        .user-info {
+          display: flex;
+          align-items: center;
+        }
+    
+        #username {
+          margin-right: 10px;
+        }
+    
+        #logout {
+          background-color: #f44336;
+          color: white;
+          padding: 8px 12px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+      </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+          <ul>
+            <li><a href="index.html">Login</a></li>
+            <li><a href="customer_registration.html">Customer Registration</a></li>
+          </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <center><h2>Sagaya's Login Page</h2></center> <br>
+        <div class="login-box">
+            <h3>Login</h3>
+            <form id="loginForm">
+                <label for="userId">User ID:</label><br>
+                <input type="text" id="userId" name="userId" required><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required><br>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var userId = document.getElementById('userId').value;
+            var password = document.getElementById('password').value;
+
+            if (userId !== '' && password !== '') {
+                window.location.href = 'home.html';
+            } else {
+                alert('Username and password are required');
+            }
+        });
+    </script>
+</body>
+
+</html>
